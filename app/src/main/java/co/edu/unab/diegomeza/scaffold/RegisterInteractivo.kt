@@ -1,8 +1,14 @@
 package co.edu.unab.diegomeza.scaffold
 
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.OutlinedTextField
@@ -14,12 +20,14 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.pointer.HistoricalChange
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
 @Preview(showBackground = true , showSystemUi = true)
@@ -29,6 +37,7 @@ fun RegisterScreen(){
     var sintomasPaciente by remember() { mutableStateOf("") }
     var fechaIngresoPaciente by remember() { mutableStateOf("") }
     var cedulaPaciente by remember() { mutableStateOf(0) }
+    var epsPaciente by remember() { mutableStateOf("") }
     Scaffold(
 
         topBar = {
@@ -47,7 +56,10 @@ fun RegisterScreen(){
                 fecha = fechaIngresoPaciente,
                 onFechaChange = { fechaIngresoPaciente = it },
                 cedula = cedulaPaciente,
-                onCedulaChange = { cedulaPaciente = it }
+                onCedulaChange = { cedulaPaciente = it },
+                eps = epsPaciente,
+                onepsChange = { epsPaciente = it }
+
             )
 
         }
@@ -65,7 +77,9 @@ fun TopBarRegisterScreen(){
 
                 Text("Registro Pacientes",
                     style = TextStyle(fontSize = 24.sp , fontWeight = FontWeight.Bold
-                ) )
+                ) ,
+                    modifier = Modifier.padding(12.dp))
+
             },
         colors = TopAppBarDefaults.centerAlignedTopAppBarColors(
             containerColor = Color(0xFF00BCD4),
@@ -79,17 +93,22 @@ fun TopBarRegisterScreen(){
 fun BodyRegisterScreen(nombre: String, onNombreChange: (String) -> Unit
                        , sintomas: String, onSintomasChange: (String) -> Unit, cedula: Int, onCedulaChange: (Int) -> Unit
                        , fecha: String
-                       ,onFechaChange: (String) -> Unit){
+                       ,onFechaChange: (String) -> Unit,eps: String , onepsChange: (String) -> Unit){
 
-        Column() {
+        Column(verticalArrangement = Arrangement.spacedBy(8.dp), horizontalAlignment = Alignment.CenterHorizontally, modifier = Modifier.fillMaxWidth().padding(10.dp).background(Color(
+            0xB939A89A
+        ), RoundedCornerShape(12.dp)
+        )) {
 
 
+            Spacer(modifier = Modifier.height(5.dp))
             Text("Nombre Paciente",
                 style = TextStyle(fontSize = 24.sp , fontWeight = FontWeight.Bold) )
 
             OutlinedTextField(value = nombre,
                             onValueChange = { }
             )
+            Spacer(modifier = Modifier.height(5.dp))
 
             Text("Sintomas",
                 style = TextStyle(fontSize = 24.sp , fontWeight = FontWeight.Bold) )
@@ -98,6 +117,7 @@ fun BodyRegisterScreen(nombre: String, onNombreChange: (String) -> Unit
                             onValueChange = { }
 
             )
+            Spacer(modifier = Modifier.height(5.dp))
 
             Text("Fecha Ingreso",
                 style = TextStyle(fontSize = 24.sp , fontWeight = FontWeight.Bold) )
@@ -106,6 +126,8 @@ fun BodyRegisterScreen(nombre: String, onNombreChange: (String) -> Unit
                 onValueChange = { }
 
             )
+            Spacer(modifier = Modifier.height(5.dp))
+
             Text("Cedula",
                 style = TextStyle(fontSize = 24.sp , fontWeight = FontWeight.Bold) )
 
@@ -113,6 +135,17 @@ fun BodyRegisterScreen(nombre: String, onNombreChange: (String) -> Unit
                 onValueChange = { }
 
             )
+            Spacer(modifier = Modifier.height(5.dp))
+
+            Text("EPS",
+                style = TextStyle(fontSize = 24.sp , fontWeight = FontWeight.Bold) )
+            OutlinedTextField(value = eps,
+                onValueChange = { }
+
+            )
+            Spacer(modifier = Modifier.height(5.dp))
+
+
         }
 
 }
