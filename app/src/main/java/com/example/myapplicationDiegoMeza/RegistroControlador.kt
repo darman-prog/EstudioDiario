@@ -33,13 +33,17 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.ViewModel
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import coil.compose.AsyncImage
 
-@Preview(showBackground = true, showSystemUi = true)
+
+
+
 @Composable
-fun RegistroScreen() {
+fun RegistroScreen(navController: NavController = rememberNavController(),userViewModel: usuarioViewModel) {
     // 1. Estado para los inputs (¡Vital en Compose!)
-    var nombre by remember { mutableStateOf("") }
     var correo by remember { mutableStateOf("") }
 
     // 2. Degradado más suave (Solo 3 tonos)
@@ -61,7 +65,7 @@ fun RegistroScreen() {
     ) {
         // Imagen con un poco de elevación visual
         AsyncImage(
-            model = "https://cdn-icons-png.flaticon.com/512/4345/4345573.png",
+            model = "https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=400",
             placeholder = painterResource(R.drawable.ic_launcher_background),
             contentDescription = "Imagen Tecnológica de Fondo",
             modifier = Modifier
@@ -85,8 +89,8 @@ fun RegistroScreen() {
         // Campo: Nombre
         Text("Nombre de Usuario", color = Color.White.copy(alpha = 0.7f), fontSize = 14.sp)
         TextField(
-            value = nombre,
-            onValueChange = { nombre = it },
+            value = userViewModel.usuario,
+            onValueChange = {userViewModel.usuario = it},
             modifier = Modifier.fillMaxWidth().padding(vertical = 8.dp),
             placeholder = { Text("Ej: Diego Meza") }
         )
@@ -104,9 +108,8 @@ fun RegistroScreen() {
 
         Spacer(modifier = Modifier.height(32.dp))
 
-        // Botón de Registro (Aquí usamos el azul neón)
         Button(
-            onClick = { /* Acción */ },
+            onClick = { navController.navigate("controlador")},
             modifier = Modifier.fillMaxWidth().height(50.dp),
             colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF00B4D8))
         ) {
@@ -114,3 +117,5 @@ fun RegistroScreen() {
         }
     }
 }
+
+
