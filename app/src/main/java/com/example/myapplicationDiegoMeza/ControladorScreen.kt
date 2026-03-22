@@ -46,7 +46,7 @@ private val TextPrimary  = Color(0xFF1A1A2E)
 private val TextSecondary = Color(0xFF6B7280)
 
 private val gradientBorder = Brush.horizontalGradient(
-    colors = listOf(Color(0xFF00B4D8), Color(0xFF00FBFF))
+    colors = listOf(Color(0xFF4EA4BB), Color(0xFF4EBED2))
 )
 
 // ──────────────────────────────────────────────
@@ -247,7 +247,7 @@ private fun BotonEliminarAleatoria(
         modifier = Modifier.fillMaxWidth(),
         shape = RoundedCornerShape(12.dp),
         colors = ButtonDefaults.outlinedButtonColors(contentColor = Color(0xFFD32F2F)),
-        border = androidx.compose.foundation.BorderStroke(1.dp, Color(0xFFD32F2F).copy(alpha = 0.5f))
+        border = androidx.compose.foundation.BorderStroke(2.dp, Color(0xFFD21A1A).copy(alpha = 0.7f))
     ) {
         Icon(Icons.Filled.Delete, contentDescription = null, modifier = Modifier.size(18.dp))
         Spacer(modifier = Modifier.width(8.dp))
